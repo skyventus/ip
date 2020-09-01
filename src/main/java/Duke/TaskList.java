@@ -22,12 +22,15 @@ public class TaskList {
     }
 
     public void printTasks() {
+        //to keep track of item starting from 1
+        int itemRank = 1;
+
         if (tasks.isEmpty())
             ui.showToUser("No tasks has been added to the list yet.");
-        int rank = 1;
+
         for (Task task : tasks) {
-            ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), rank, task.isDone());
-            rank++;
+            ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
+            itemRank++;
         }
     }
 

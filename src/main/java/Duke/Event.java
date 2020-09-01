@@ -3,8 +3,8 @@ package Duke;
 public class Event extends Task {
     private String eventInformation;
 
-    public Event(String desc, String event){
-        super(desc);
+    public Event(String description, String event){
+        super(description);
         this.eventInformation = event;
     }
 
