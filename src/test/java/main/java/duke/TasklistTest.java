@@ -1,7 +1,10 @@
-package main.java.duke;
+package java.main.java.duke;
 
+import main.java.duke.DukeException;
+import main.java.duke.TaskList;
 import main.java.utils.Parser;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

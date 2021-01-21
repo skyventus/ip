@@ -1,6 +1,8 @@
-package main.java.duke;
+package test.java.main.java.duke;
 
 
+import main.java.duke.DukeException;
+import main.java.duke.TaskList;
 import main.java.utils.Parser;
 import org.junit.jupiter.api.Test;
 

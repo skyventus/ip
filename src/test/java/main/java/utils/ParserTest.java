@@ -1,6 +1,7 @@
-package main.java.utils;
+package java.main.java.utils;
 
 import main.java.duke.DukeException;
+import main.java.utils.Parser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
