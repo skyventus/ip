@@ -1,10 +1,4 @@
-package main.java.utils;
-
-import main.java.duke.Deadline;
-import main.java.duke.DukeException;
-import main.java.duke.Event;
-import main.java.duke.Task;
-import main.java.duke.Todo;
+package duke;
 
 /**
  * Parser is a class that help to parser needed information into program friendly terms

@@ -1,15 +1,8 @@
-package main.java.utils;
-import main.java.duke.Duke;
-import main.java.duke.DukeException;
-import main.java.duke.TaskList;
-
+package duke;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Todo is a class that extends to task. As it contains the status of the tasks.

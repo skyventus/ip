@@ -1,4 +1,5 @@
-package main.java.duke;
+package duke;
+
 
 /**
  * Deadline is a class that extends Todo
