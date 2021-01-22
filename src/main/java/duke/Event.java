@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Event is a class that extends Todo

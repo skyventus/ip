@@ -1,7 +1,4 @@
-package main.java.duke;
-
-import main.java.utils.Parser;
-import main.java.utils.Ui;
+package duke;
 
 import java.util.ArrayList;
 import java.util.List;

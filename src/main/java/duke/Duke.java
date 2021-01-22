@@ -1,8 +1,4 @@
-package main.java.duke;
-
-import main.java.utils.Storage;
-import main.java.utils.Ui;
-import main.java.utils.Parser;
+package duke;
 
 import java.io.IOException;
 
@@ -77,6 +73,7 @@ public class Duke {
 
     }
     public static void main(String[] args) {
+        System.out.println(System.getProperty("sun.java.command"));
         new Duke("data/Duke.txt").run();
     }
 }

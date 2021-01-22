@@ -1,4 +1,4 @@
-package main.java.duke;
+package duke;
 
 /**
  * Task is the based class for this Duke and is a abstract class.
