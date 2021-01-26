@@ -1,6 +1,6 @@
 package utils;
-import duke.DukeException;
-import duke.Parser;
+import seedu.duke.DukeException;
+import seedu.utils.Parser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
