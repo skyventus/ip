@@ -1,13 +1,28 @@
-package duke;
+package seedu.duke;
+
+
+import seedu.duke.commons.DukeException;
+import seedu.duke.model.TaskList;
+import seedu.duke.commons.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
-public class Duke {
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class Duke extends Application{
 
     private Ui ui;
     private TaskList task;
     private Storage storage;
 
+    @Override
+    public void init() throws Exception {
+      super.init();
+      new Duke("data/Duke.txt").run();
+    }
     public Duke (String filePath){
 
         storage  = new Storage("Data","Duke.txt");
@@ -21,6 +36,43 @@ public class Duke {
         }
     }
 
+    public String getResponse(String input){
+
+      String fullCommand = input.toLowerCase();
+      String commandWord = Parser.getCommandWord(fullCommand);
+      String returnMessage = "You have entered: '" + fullCommand + "' \n";
+      try{
+        switch(commandWord){
+          case("list"):
+            return returnMessage + task.getPrintTasks();
+          case("done"):
+            return returnMessage + task.getSetTaskDone(Parser.getTaskIndex(fullCommand));
+          case("todo"):
+            return returnMessage + task.getAddTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
+          case("deadline"):
+            return returnMessage + task.getAddTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
+                    ,Parser.getDeadline(fullCommand)));
+          case("event"):
+            return returnMessage + task.getAddTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
+                    ,Parser.getEventTiming(fullCommand)));
+          case("delete"):
+            return returnMessage + task.getRemoveTask(Parser.getDeleteIndex(fullCommand));
+          case("save"):
+            return "When you close this program, the list of tasks will be saved.";
+          case("find"):
+            return returnMessage + task.getFindTask(Parser.getItemToFind(fullCommand,commandWord));
+          default:
+            return returnMessage + Ui.getShowToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+      }catch (DukeException e){
+        return returnMessage + (e.getMessage());
+      }
+
+    }
+
+    public void saveAllTask() throws DukeException {
+      storage.save(task);
+    }
     public void run(){
         ui = new Ui();
 
@@ -72,8 +124,13 @@ public class Duke {
         ui.showByeMessage();
 
     }
-    public static void main(String[] args) {
-        System.out.println(System.getProperty("sun.java.command"));
-        new Duke("data/Duke.txt").run();
-    }
+//    public static void main(String[] args) {
+//        System.out.println(System.getProperty("sun.java.command"));
+//        new Duke("data/Duke.txt").run();
+//    }
+
+  @Override
+  public void start(Stage stage) throws Exception {
+
+  }
 }

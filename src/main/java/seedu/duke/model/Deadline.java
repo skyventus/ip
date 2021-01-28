@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke.model;
 
 
 /**
@@ -6,7 +6,7 @@ package duke;
  * As Deadline consist of deadline information in this class.
  * @author olivier cheah
  */
-public class Deadline extends Todo{
+public class Deadline extends Todo {
     private String deadline;
 
     public Deadline(String description, String deadline) {
