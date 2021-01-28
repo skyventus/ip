@@ -1,4 +1,9 @@
-package duke;
+package seedu.duke.storage;
+
+import seedu.duke.commons.DukeException;
+import seedu.duke.model.TaskList;
+import seedu.duke.commons.Parser;
+import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileWriter;

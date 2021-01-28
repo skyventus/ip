@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke.model;
 
 /**
  * Todo is a class that extends to task. As it contains the status of the tasks.

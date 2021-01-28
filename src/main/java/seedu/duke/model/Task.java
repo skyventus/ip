@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke.model;
 
 /**
  * Task is the based class for this Duke and is a abstract class.

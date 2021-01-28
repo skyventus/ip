@@ -1,4 +1,10 @@
-package duke;
+package seedu.duke.commons;
+
+import seedu.duke.model.Deadline;
+import seedu.duke.model.Event;
+import seedu.duke.model.Task;
+import seedu.duke.model.Todo;
+import seedu.duke.ui.Ui;
 
 /**
  * Parser is a class that help to parser needed information into program friendly terms
@@ -87,10 +93,15 @@ public class Parser {
     }
 
     public static int getTaskIndex(String fullCommand) {
+
+      try {
         int idx = Integer.parseInt(fullCommand.replace("done", "")
                 .trim());
 
         return idx;
+      }catch(NumberFormatException e){
+        return -1;
+      }
     }
 
     public static int getDeleteIndex(String fullCommand) {

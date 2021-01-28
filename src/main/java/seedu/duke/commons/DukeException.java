@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke.commons;
 
 
 public class DukeException extends Exception {

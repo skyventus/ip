@@ -2,9 +2,9 @@ package seedu;
 
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeException;
-import seedu.duke.TaskList;
-import seedu.utils.Parser;
+import seedu.duke.commons.DukeException;
+import seedu.duke.model.TaskList;
+import seedu.duke.commons.Parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 

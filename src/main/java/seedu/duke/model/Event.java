@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke.model;
 
 /**
  * Event is a class that extends Todo
