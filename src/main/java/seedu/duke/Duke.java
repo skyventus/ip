@@ -9,20 +9,12 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-
-public class Duke extends Application{
+public class Duke {
 
     private Ui ui;
     private TaskList task;
     private Storage storage;
 
-    @Override
-    public void init() throws Exception {
-      super.init();
-      new Duke("data/Duke.txt").run();
-    }
     public Duke (String filePath){
 
         storage  = new Storage("Data","Duke.txt");
@@ -124,13 +116,10 @@ public class Duke extends Application{
         ui.showByeMessage();
 
     }
-//    public static void main(String[] args) {
-//        System.out.println(System.getProperty("sun.java.command"));
-//        new Duke("data/Duke.txt").run();
-//    }
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("sun.java.command"));
+        new Duke("data/Duke.txt").run();
+    }
 
-  @Override
-  public void start(Stage stage) throws Exception {
 
-  }
 }
