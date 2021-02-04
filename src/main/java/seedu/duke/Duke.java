@@ -8,6 +8,7 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class Duke {
 
@@ -58,6 +59,8 @@ public class Duke {
         }
       }catch (DukeException e){
         return returnMessage + (e.getMessage());
+      }catch (ParseException e){
+        return returnMessage + ("Date format invalid. Please set it as dd/mm/yyyy. Eg: 21/12/2021");
       }
 
     }
@@ -78,6 +81,9 @@ public class Duke {
                 switch(commandWord){
                     case("list"):
                         task.printTasks();
+                        break;
+                    case("sort"):
+                      task.sortDeadlineTasks();
                         break;
                     case("done"):
                         task.setTaskDone(Parser.getTaskIndex(fullCommand));
@@ -108,6 +114,8 @@ public class Duke {
                 }
             }catch (DukeException e){
                 System.out.println(e.getMessage());
+            }catch (ParseException e){
+              System.out.println("Date format invalid. Please set it as dd/mm/yyyy. Eg: 21/12/2021");
             }
             fullCommand = ui.readUserCommand().toLowerCase();
             commandWord = Parser.getCommandWord(fullCommand);

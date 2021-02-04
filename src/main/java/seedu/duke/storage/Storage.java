@@ -8,6 +8,7 @@ import seedu.duke.ui.Ui;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -57,7 +58,7 @@ public class Storage {
                     tasks.setTaskDoneSliently(idx);
                 }
                 idx++;
-            }catch (StringIndexOutOfBoundsException e){
+            }catch (StringIndexOutOfBoundsException | ParseException e){
                 e.getMessage();
             }
         }

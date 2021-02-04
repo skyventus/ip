@@ -6,6 +6,10 @@ import seedu.duke.model.Task;
 import seedu.duke.model.Todo;
 import seedu.duke.ui.Ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Parser is a class that help to parser needed information into program friendly terms
  * @author olivier cheah
@@ -40,8 +44,9 @@ public class Parser {
         return event;
     }
 
-    public static Deadline createDeadline(String fullCommand, String by) {
-        Deadline deadline = new Deadline(fullCommand, by);
+    public static Deadline createDeadline(String fullCommand, String by) throws ParseException {
+        Date date = new SimpleDateFormat("dd/mm/yyyy").parse(by);
+        Deadline deadline = new Deadline(fullCommand, date);
 
         return deadline;
     }
@@ -137,5 +142,9 @@ public class Parser {
                 return true;
         }
         return false;
+    }
+
+    public static int compare(Date d1, Date d2){
+        return d1.compareTo(d2);
     }
 }

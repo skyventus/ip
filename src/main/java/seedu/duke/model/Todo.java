@@ -26,4 +26,9 @@ public class Todo extends Task {
     public void setDone(boolean done) {
         this.taskStatus=done;
     }
+
+    @Override
+    public String getDeadline() {
+      return null ;
+    }
 }

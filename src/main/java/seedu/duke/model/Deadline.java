@@ -1,27 +1,42 @@
 package seedu.duke.model;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Deadline is a class that extends Todo
  * As Deadline consist of deadline information in this class.
  * @author olivier cheah
  */
 public class Deadline extends Todo {
-    private String deadline;
+    private Date deadline;
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, Date deadline) {
         super(description);
         this.deadline = deadline;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (by: " + deadline + ")";
+      SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+      String date = sdf.format(deadline);
+      return super.toString() + " (by: " + date + ")";
     }
 
     @Override
     public String saveTask(){
-        return "D | " + (super.isDone() ? "1" : "0") + " | " + super.getDescription() + " | " + deadline + "\n";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        String date = sdf.format(deadline);
+        return "D | " + (super.isDone() ? "1" : "0") + " | " + super.getDescription() + " | " + date + "\n";
+    }
+
+    @Override
+    public String getDeadline(){
+      SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+      String date = sdf.format(deadline);
+
+      return date;
     }
 
 }

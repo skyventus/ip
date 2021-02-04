@@ -26,5 +26,5 @@ public abstract class Task {
     public abstract boolean isDone();
     public abstract String saveTask();
     public abstract void setDone(boolean done);
-
+    public abstract String getDeadline();
 }

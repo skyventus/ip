@@ -4,8 +4,10 @@ import seedu.duke.commons.DukeException;
 import seedu.duke.commons.Parser;
 import seedu.duke.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * TaskList is a class that hold a list of tasks and its related function.
@@ -55,6 +57,39 @@ public class TaskList {
     }
   }
 
+  public void sortDeadlineTasks(){
+    int itemRank=1;
+    List<Task> sortedTask = new ArrayList<>();
+
+    sortedTask.addAll(tasks);
+
+    if (tasks.isEmpty())
+      Ui.showToUser("No tasks has been added to the list yet.");
+
+    Collections.sort(sortedTask, new Comparator<Task>() {
+      DateFormat f = new SimpleDateFormat("dd/mm/yyyy");
+      @Override
+      public int compare(Task task, Task t1) {
+        try {
+          if(task.getDeadline() == null && task.getDeadline() == null)
+            return -1;
+          if (task.getDeadline() == null)
+            return -1;
+          if (t1.getDeadline() == null)
+            return -1;
+
+          return f.parse(task.getDeadline()).compareTo(f.parse(t1.getDeadline()));
+        } catch (ParseException e) {
+          throw new IllegalArgumentException(e);
+        }
+      }
+    });
+
+    for (Task task : sortedTask) {
+      ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
+      itemRank++;
+    }
+  }
   public String getPrintTasks() {
     //to keep track of item starting from 1
     int itemRank = 1;
@@ -110,6 +145,12 @@ public class TaskList {
 
   public void removeTask(int idx) throws DukeException {
     try {
+      if(idx<1) {
+        throw new IndexOutOfBoundsException();
+      }
+      if(tasks.size() < idx)
+        throw new IndexOutOfBoundsException();
+
       ui.showDeleteMessage();
       ui.showDeleteTaskDetails(Parser.getTaskType(tasks.get(idx - 1)), tasks.get(idx - 1).toString(), tasks.get(idx - 1).isDone());
       tasks.remove(idx - 1);
