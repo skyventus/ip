@@ -15,43 +15,43 @@ import java.util.*;
  * @author Olivier Cheah
  */
 public class TaskList {
-  private List<Task> tasks;
+  private List<Task> listOfTasks;
   Ui ui = new Ui();
   final String newLine = "\n";
 
   public TaskList() {
-    this.tasks = new ArrayList<>();
+    this.listOfTasks = new ArrayList<>();
   }
 
   public void addTask(Task task) {
-    tasks.add(task);
+    listOfTasks.add(task);
     Ui.printGotIt();
     ui.showAddedTask(Parser.getTaskType(task), task.toString());
-    ui.showTotalNumberTaskAdded(tasks.size());
+    ui.showTotalNumberTaskAdded(listOfTasks.size());
   }
 
   public String getAddTask(Task task) {
     String message = "";
-    tasks.add(task);
+    listOfTasks.add(task);
     message = message + Ui.getPrintGotIt() + newLine;
     message = message + ui.getShowAddedTask(Parser.getTaskType(task), task.toString()) + newLine;
-    message = message + ui.getShowTotalNumberTaskAdded(tasks.size()) + newLine;
+    message = message + ui.getShowTotalNumberTaskAdded(listOfTasks.size()) + newLine;
 
     return message;
   }
 
   public void addTaskWithoutMessage(Task task) {
-    tasks.add(task);
+    listOfTasks.add(task);
   }
 
   public void printTasks() {
     //to keep track of item starting from 1
     int itemRank = 1;
 
-    if (tasks.isEmpty())
+    if (listOfTasks.isEmpty())
       Ui.showToUser("No tasks has been added to the list yet.");
 
-    for (Task task : tasks) {
+    for (Task task : listOfTasks) {
       ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
       itemRank++;
     }
@@ -61,9 +61,9 @@ public class TaskList {
     int itemRank=1;
     List<Task> sortedTask = new ArrayList<>();
 
-    sortedTask.addAll(tasks);
+    sortedTask.addAll(listOfTasks);
 
-    if (tasks.isEmpty())
+    if (listOfTasks.isEmpty())
       Ui.showToUser("No tasks has been added to the list yet.");
 
     Collections.sort(sortedTask, new Comparator<Task>() {
@@ -94,10 +94,10 @@ public class TaskList {
     //to keep track of item starting from 1
     int itemRank = 1;
     String message = "";
-    if (tasks.isEmpty())
+    if (listOfTasks.isEmpty())
       return Ui.getShowToUser("No tasks has been added to the list yet.");
 
-    for (Task task : tasks) {
+    for (Task task : listOfTasks) {
       message = message + ui.getShowTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
       message = message + "\n";
       itemRank++;
@@ -113,8 +113,8 @@ public class TaskList {
         System.out.println(idx);
         return ("[ERROR] No task found for the number you want to set done");
       }
-      tasks.get(idx - 1).setDone(true);
-      return ui.getShowDoneTask(Parser.getTaskType(tasks.get(idx - 1)), tasks.get(idx - 1).toString());
+      listOfTasks.get(idx - 1).setDone(true);
+      return ui.getShowDoneTask(Parser.getTaskType(listOfTasks.get(idx - 1)), listOfTasks.get(idx - 1).toString());
     } catch (IndexOutOfBoundsException e) {
       return ("[ERROR] No task found for the number you want to set done");
     }
@@ -123,21 +123,21 @@ public class TaskList {
   public void setTaskDone(int idx) throws DukeException {
     try {
       Ui.printDone();
-      tasks.get(idx - 1).setDone(true);
-      ui.showDoneTask(Parser.getTaskType(tasks.get(idx - 1)), tasks.get(idx - 1).toString());
+      listOfTasks.get(idx - 1).setDone(true);
+      ui.showDoneTask(Parser.getTaskType(listOfTasks.get(idx - 1)), listOfTasks.get(idx - 1).toString());
     } catch (IndexOutOfBoundsException e) {
       throw new DukeException("[ERROR] No task found for the number you want to set done");
     }
   }
 
   public boolean isTaskCompleted(int idx) {
-    return tasks.get(idx - 1).isDone();
+    return listOfTasks.get(idx - 1).isDone();
   }
 
   public void setTaskDoneSliently(int idx) throws DukeException {
     try {
       Ui.printDone();
-      tasks.get(idx - 1).setDone(true);
+      listOfTasks.get(idx - 1).setDone(true);
     } catch (IndexOutOfBoundsException e) {
       throw new DukeException("[ERROR] No task found for the number you want to set done");
     }
@@ -148,13 +148,13 @@ public class TaskList {
       if(idx<1) {
         throw new IndexOutOfBoundsException();
       }
-      if(tasks.size() < idx)
+      if(listOfTasks.size() < idx)
         throw new IndexOutOfBoundsException();
 
       ui.showDeleteMessage();
-      ui.showDeleteTaskDetails(Parser.getTaskType(tasks.get(idx - 1)), tasks.get(idx - 1).toString(), tasks.get(idx - 1).isDone());
-      tasks.remove(idx - 1);
-      ui.showTotalNumberTaskAdded(tasks.size());
+      ui.showDeleteTaskDetails(Parser.getTaskType(listOfTasks.get(idx - 1)), listOfTasks.get(idx - 1).toString(), listOfTasks.get(idx - 1).isDone());
+      listOfTasks.remove(idx - 1);
+      ui.showTotalNumberTaskAdded(listOfTasks.size());
     } catch (IndexOutOfBoundsException e) {
       throw new DukeException("[ERROR] No task found for the number you want to set done");
     }
@@ -165,10 +165,10 @@ public class TaskList {
     String newLine = "\n";
     try {
       message = message + ui.getShowDeleteMessage() + newLine;
-      message = message + ui.getShowDeleteTaskDetails(Parser.getTaskType(tasks.get(idx - 1)), tasks.get(idx - 1).toString(), tasks.get(idx - 1).isDone()) +
+      message = message + ui.getShowDeleteTaskDetails(Parser.getTaskType(listOfTasks.get(idx - 1)), listOfTasks.get(idx - 1).toString(), listOfTasks.get(idx - 1).isDone()) +
                 newLine;
-      tasks.remove(idx - 1);
-      message = message + ui.getShowTotalNumberTaskAdded(tasks.size()) + newLine;
+      listOfTasks.remove(idx - 1);
+      message = message + ui.getShowTotalNumberTaskAdded(listOfTasks.size()) + newLine;
     } catch (IndexOutOfBoundsException e) {
       message = ("[ERROR] No task found for the number you want to set done");
     }
@@ -177,16 +177,16 @@ public class TaskList {
   }
 
   public boolean isEmpty() {
-    boolean isEmpty = tasks.isEmpty();
+    boolean isEmpty = listOfTasks.isEmpty();
     return isEmpty;
   }
 
   public int getSize() {
-    return tasks.size();
+    return listOfTasks.size();
   }
 
   public String saveTask(int idx) {
-    String value = tasks.get(idx).saveTask();
+    String value = listOfTasks.get(idx).saveTask();
     //System.out.println(value);
     return value;
   }
@@ -194,10 +194,10 @@ public class TaskList {
   public void findTask(String keyword) {
     int itemRank = 1;
 
-    if (tasks.isEmpty())
+    if (listOfTasks.isEmpty())
       Ui.showToUser("No tasks has been added to the list yet.");
 
-    for (Task task : tasks) {
+    for (Task task : listOfTasks) {
       if (Parser.findMatchKeywords(task.getDescription().trim(), keyword)) {
         ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
         itemRank++;
@@ -212,10 +212,10 @@ public class TaskList {
     int itemRank = 1;
     String message = "";
     String newLine = "\n";
-    if (tasks.isEmpty())
+    if (listOfTasks.isEmpty())
       return Ui.getShowToUser("No tasks has been added to the list yet.");
 
-    for (Task task : tasks) {
+    for (Task task : listOfTasks) {
       if (Parser.findMatchKeywords(task.getDescription().trim(), keyword)) {
         message = message + ui.getShowTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone()) + newLine;
         itemRank++;
@@ -227,7 +227,7 @@ public class TaskList {
     return message;
   }
   public String getTask(int index) {
-    String item = tasks.get(index).toString();
+    String item = listOfTasks.get(index).toString();
     System.out.println(item);
     return item;
   }

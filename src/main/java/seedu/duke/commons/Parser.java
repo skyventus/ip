@@ -143,8 +143,4 @@ public class Parser {
         }
         return false;
     }
-
-    public static int compare(Date d1, Date d2){
-        return d1.compareTo(d2);
-    }
 }

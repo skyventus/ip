@@ -16,13 +16,13 @@ import java.util.regex.Pattern;
 public class Storage {
 
     private String filePath;
-    private String filename;
+    private String fileName;
     private Ui myUI = new Ui();
     private TaskList tasks;
 
     public Storage(String filePath, String filename){
         this.filePath = filePath;
-        this.filename = filename;
+        this.fileName = filename;
         File directory = new File(filePath);
         if(! directory.exists()) {
             directory.mkdir();
@@ -48,8 +48,6 @@ public class Storage {
                 if (task[0].trim().equals("T")) {
                     tasks.addTaskWithoutMessage(Parser.createTodo(task[2]));
                 } else if (task[0].trim().equals("D")) {
-//                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-//                    Date date = df.parse(task[3].trim());
                     tasks.addTaskWithoutMessage(Parser.createDeadline(task[2].trim(), task[3].trim()));
                 } else if (task[0].trim().equals("E")){
                     tasks.addTaskWithoutMessage(Parser.createEvent(task[2].trim(), task[3].trim()));

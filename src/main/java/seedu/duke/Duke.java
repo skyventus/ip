@@ -13,15 +13,15 @@ import java.text.ParseException;
 public class Duke {
 
     private Ui ui;
-    private TaskList task;
+    private TaskList listOfTasks;
     private Storage storage;
 
     public Duke (String filePath){
 
         storage  = new Storage("Data","Duke.txt");
         try {
-            task=storage.load(filePath);
-            Ui.showToUser("---Total number of task loaded: " + task.getSize());
+            listOfTasks =storage.load(filePath);
+            Ui.showToUser("---Total number of task loaded: " + listOfTasks.getSize());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (DukeException e) {
@@ -37,23 +37,23 @@ public class Duke {
       try{
         switch(commandWord){
           case("list"):
-            return returnMessage + task.getPrintTasks();
+            return returnMessage + listOfTasks.getPrintTasks();
           case("done"):
-            return returnMessage + task.getSetTaskDone(Parser.getTaskIndex(fullCommand));
+            return returnMessage + listOfTasks.getSetTaskDone(Parser.getTaskIndex(fullCommand));
           case("todo"):
-            return returnMessage + task.getAddTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
+            return returnMessage + listOfTasks.getAddTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
           case("deadline"):
-            return returnMessage + task.getAddTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
+            return returnMessage + listOfTasks.getAddTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
                     ,Parser.getDeadline(fullCommand)));
           case("event"):
-            return returnMessage + task.getAddTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
+            return returnMessage + listOfTasks.getAddTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
                     ,Parser.getEventTiming(fullCommand)));
           case("delete"):
-            return returnMessage + task.getRemoveTask(Parser.getDeleteIndex(fullCommand));
+            return returnMessage + listOfTasks.getRemoveTask(Parser.getDeleteIndex(fullCommand));
           case("save"):
             return "When you close this program, the list of tasks will be saved.";
           case("find"):
-            return returnMessage + task.getFindTask(Parser.getItemToFind(fullCommand,commandWord));
+            return returnMessage + listOfTasks.getFindTask(Parser.getItemToFind(fullCommand,commandWord));
           default:
             return returnMessage + Ui.getShowToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -66,7 +66,7 @@ public class Duke {
     }
 
     public void saveAllTask() throws DukeException {
-      storage.save(task);
+      storage.save(listOfTasks);
     }
     public void run(){
         ui = new Ui();
@@ -80,33 +80,33 @@ public class Duke {
             try{
                 switch(commandWord){
                     case("list"):
-                        task.printTasks();
+                        listOfTasks.printTasks();
                         break;
                     case("sort"):
-                      task.sortDeadlineTasks();
+                      listOfTasks.sortDeadlineTasks();
                         break;
                     case("done"):
-                        task.setTaskDone(Parser.getTaskIndex(fullCommand));
+                        listOfTasks.setTaskDone(Parser.getTaskIndex(fullCommand));
                         break;
                     case("todo"):
-                        task.addTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
+                        listOfTasks.addTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
                         break;
                     case("deadline"):
-                        task.addTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
+                        listOfTasks.addTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
                                 ,Parser.getDeadline(fullCommand)));
                         break;
                     case("event"):
-                        task.addTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
+                        listOfTasks.addTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
                                 ,Parser.getEventTiming(fullCommand)));
                         break;
                     case("delete"):
-                        task.removeTask(Parser.getDeleteIndex(fullCommand));
+                        listOfTasks.removeTask(Parser.getDeleteIndex(fullCommand));
                         break;
                     case("save"):
-                        storage.save(task);
+                        storage.save(listOfTasks);
                         break;
                     case("find"):
-                        task.findTask(Parser.getItemToFind(fullCommand,commandWord));
+                        listOfTasks.findTask(Parser.getItemToFind(fullCommand,commandWord));
                         break;
                     default:
                         Ui.showToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
