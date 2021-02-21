@@ -29,6 +29,26 @@ Contains everything that Todo has with a deadline to the tasks.
 ###### Event
 Contains everything that todo has with a time period to the tasks. 
 
+###### Sort
+
+Return a list of sorted tasks with the deadline being sorted. 
+
+###### Delete
+
+Delete a specific task.
+
+###### Find
+
+Find a task relating to the keyword.
+
+###### List
+
+List out all the tasks that the user has entered to the system.
+
+###### Save
+
+Save all the tasks to a text file. 
+
 ## Available Keywords
 
 ### `Todo` - Create todo task into the systems.

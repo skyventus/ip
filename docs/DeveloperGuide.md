@@ -45,12 +45,12 @@ If you plan to use Intellij IDEA (highly recommended):
 
 The ***Architecture Diagram*** shown gives an overview of the high-level design.
 
-`Main` has one class named `NusExpenses`. It would perform the following functions:
+**`Main`** has two classes called [`Main`](https://github.com/skyventus/ip/blob/master/src/main/java/seedu/Main.java) and [`MainApp`](https://github.com/skyventus/ip/blob/master/src/main/java/seedu/MainApp.java). It is responsible for,
 
-- At launch: Initialize the components in the correct sequence, and connect them up with each other.
-- At shut down / Exit: Shuts down the components and invokes save / cleanup methods where necessary.
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-`Constants` holds a collection of frequently used static messages used by multiple other components.
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The application then consists of four other components:
 
@@ -66,10 +66,7 @@ One example would be the `Storage` component which defines its API in `Storage.j
 
 ##### Storage Component
 ###### Storage(Load)
-![StorageComponent](images/storageDecodedDiagram.png)
-
-###### Storage(save)
-![StorageComponent](images/storageEncodedDiagram.png)
+![StorageComponent](images/DukeStorage.png)
 
 API:  ```Storage.java```
 
@@ -82,15 +79,10 @@ to save to the file.
 
 The *Sequence Diagram* below shows how the components interact with each other in the scenario where the user issues the command ```search keyword```
 
-###### Search Command Sequence Diagram
-![SearchCommand Sequence Diagram](images/SearchSequenceDiagram.png)
+###### Find Feature Sequence Diagram
+![SearchCommand Sequence Diagram](images/DukeSearchSequence.png)
 
 The following *Object Diagram* gives an overview of which objects are accessed and associated with the execution of the `Search` command.
-
-###### Search Command Object Diagram
-![SearchCommand Object Diagram](images/SearchCommandObjectDiagram.png)
-
-The following *Sequence Diagram* shows how the components interact in the scenario where the user issues the `total` command.
 
 ## Appendix: Requirements
 ### Product scope
