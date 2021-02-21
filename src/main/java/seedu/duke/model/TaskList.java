@@ -57,8 +57,8 @@ public class TaskList {
     }
   }
 
-  public void sortDeadlineTasks(){
-    int itemRank=1;
+  public void sortDeadlineTasks() {
+    int itemRank = 1;
     List<Task> sortedTask = new ArrayList<>();
 
     sortedTask.addAll(listOfTasks);
@@ -68,10 +68,11 @@ public class TaskList {
 
     Collections.sort(sortedTask, new Comparator<Task>() {
       DateFormat f = new SimpleDateFormat("dd/mm/yyyy");
+
       @Override
       public int compare(Task task, Task t1) {
         try {
-          if(task.getDeadline() == null && task.getDeadline() == null)
+          if (task.getDeadline() == null && task.getDeadline() == null)
             return -1;
           if (task.getDeadline() == null)
             return -1;
@@ -84,12 +85,46 @@ public class TaskList {
         }
       }
     });
-
-    for (Task task : sortedTask) {
-      ui.showTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
-      itemRank++;
-    }
   }
+
+    public String  getSortedDeadlineTasks() {
+      int itemRank = 1;
+      String message = "";
+      List<Task> sortedTask = new ArrayList<>();
+
+      sortedTask.addAll(listOfTasks);
+
+      if (listOfTasks.isEmpty())
+        return ("No tasks has been added to the list yet.");
+
+        Collections.sort(sortedTask, new Comparator<Task>() {
+          DateFormat f = new SimpleDateFormat("dd/mm/yyyy");
+
+          @Override
+          public int compare(Task task, Task t1) {
+            try {
+              if (task.getDeadline() == null && task.getDeadline() == null)
+                return -1;
+              if (task.getDeadline() == null)
+                return -1;
+              if (t1.getDeadline() == null)
+                return -1;
+
+              return f.parse(task.getDeadline()).compareTo(f.parse(t1.getDeadline()));
+            } catch (ParseException e) {
+              throw new IllegalArgumentException(e);
+            }
+          }
+        });
+      for (Task task : sortedTask) {
+        message = message + ui.getShowTaskWithOrder(Parser.getTaskType(task), task.toString(), itemRank, task.isDone());
+        message = message + "\n";
+        itemRank++;
+      }
+
+      return message;
+    }
+
   public String getPrintTasks() {
     //to keep track of item starting from 1
     int itemRank = 1;

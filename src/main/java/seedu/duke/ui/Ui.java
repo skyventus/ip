@@ -79,6 +79,10 @@ public class Ui {
     System.out.println(indent + "Your file has been saved to data/Duke.txt directory");
   }
 
+  public static String getFileSavedMessage() {
+    return (indent + "Your file has been saved to data/Duke.txt directory");
+  }
+
   public static String getPrintWelcome() {
     String returnMessage;
     returnMessage = indent + "Hello! I'm Duke.Duke" + "\n" + indent + "What can I do for you?";

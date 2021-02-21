@@ -39,19 +39,26 @@ public class Duke {
           case("list"):
             return returnMessage + listOfTasks.getPrintTasks();
           case("done"):
-            return returnMessage + listOfTasks.getSetTaskDone(Parser.getTaskIndex(fullCommand));
+            return returnMessage + listOfTasks.
+                    getSetTaskDone(Parser.getTaskIndex(fullCommand));
+          case("sort"):
+            return returnMessage + listOfTasks.getSortedDeadlineTasks();
           case("todo"):
-            return returnMessage + listOfTasks.getAddTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
+            return returnMessage + listOfTasks.
+                    getAddTask(Parser.createTodo(Parser.getTodoDescription(fullCommand,commandWord)));
           case("deadline"):
-            return returnMessage + listOfTasks.getAddTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
+            return returnMessage + listOfTasks.
+                    getAddTask(Parser.createDeadline(Parser.getDescriptionOnly(fullCommand,commandWord, "/by")
                     ,Parser.getDeadline(fullCommand)));
           case("event"):
-            return returnMessage + listOfTasks.getAddTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
+            return returnMessage + listOfTasks.
+                    getAddTask(Parser.createEvent(Parser.getDescriptionOnly(fullCommand,commandWord, "/at")
                     ,Parser.getEventTiming(fullCommand)));
           case("delete"):
             return returnMessage + listOfTasks.getRemoveTask(Parser.getDeleteIndex(fullCommand));
           case("save"):
-            return "When you close this program, the list of tasks will be saved.";
+            return returnMessage + storage.saveFile(listOfTasks);
+
           case("find"):
             return returnMessage + listOfTasks.getFindTask(Parser.getItemToFind(fullCommand,commandWord));
           default:

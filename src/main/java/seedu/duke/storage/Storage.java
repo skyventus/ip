@@ -19,6 +19,7 @@ public class Storage {
     private String fileName;
     private Ui myUI = new Ui();
     private TaskList tasks;
+    FileWriter fw ;
 
     public Storage(String filePath, String filename){
         this.filePath = filePath;
@@ -65,7 +66,6 @@ public class Storage {
     }
 
     public void save(TaskList tasks) throws DukeException {
-        FileWriter fw ;
         if(tasks.isEmpty()){
             System.out.println("[INFO] No tasks in the file to save");
         }else {
@@ -82,7 +82,24 @@ public class Storage {
                 throw new DukeException(e.getMessage());
             }
         }
-
     }
 
+    public String saveFile(TaskList tasks) throws DukeException {
+        if(tasks.isEmpty()){
+          return ("[INFO] No tasks in the file to save");
+        } else {
+            try {
+              fw = new FileWriter(filePath);
+              for (int i = 0; i < tasks.getSize(); i++) {
+                fw.write(tasks.saveTask(i));
+              }
+                fw.close();
+                return myUI.getShowFileSavedMessage();
+            } catch (IOException e) {
+                throw new DukeException(e.getMessage());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException(e.getMessage());
+            }
+          }
+    }
 }

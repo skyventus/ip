@@ -138,7 +138,7 @@ public class Parser {
         splitDescription = description.split(" ");
 
         for (String word: splitDescription) {
-            if(word.equalsIgnoreCase(keyword))
+            if(word.indexOf(keyword)!=-1)
                 return true;
         }
         return false;
